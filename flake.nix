@@ -17,7 +17,7 @@
           #     ./hardware-configuration.nix
           #   ];
 
-          networking.hostName = "imgxrpi0";
+          networking.hostName = "imgxrpi4";
 
           # boot.loader.systemd-boot.enable = true;
           # boot.loader.efi.canTouchEfiVariables = true;
@@ -26,12 +26,20 @@
 
           i18n.defaultLocale = "en_US.UTF-8";
 
-          users.users.mgradowski = {
-            isNormalUser = true;
-            extraGroups = [ "wheel" ];
-            packages = with nixpkgs.legacyPackages.aarch64-linux; [ ];
-            shell = nixpkgs.legacyPackages.aarch64-linux.fish;
-            initialHashedPassword = "$y$j9T$9SkHp/L/8vdP8d7cLghUI0$iXArK6PaT4f/sn/xQITVduUuApczpAqRWD.DgXHL358";
+
+          users = {
+            mutableUsers = false;
+
+            users.mgradowski = {
+              isNormalUser = true;
+              extraGroups = [ "wheel" ];
+              packages = with nixpkgs.legacyPackages.aarch64-linux; [ ];
+              shell = nixpkgs.legacyPackages.aarch64-linux.fish;
+              initialHashedPassword = "$y$j9T$9SkHp/L/8vdP8d7cLghUI0$iXArK6PaT4f/sn/xQITVduUuApczpAqRWD.DgXHL358";
+              openssh.authorizedKeys.keys = [
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPm1MWbGQEFlGRucHyIDzCfwfaCm0eeSTffzUIDd4X8M mgradowski@macbookair2.local"
+              ];
+            };
           };
 
           programs.fish.enable = true;
