@@ -12,20 +12,16 @@
       system = "aarch64-linux";
       modules = [
         {
-          # imports =
-          #   [
-          #     ./hardware-configuration.nix
-          #   ];
-
           networking.hostName = "imgxrpi4";
 
-          # boot.loader.systemd-boot.enable = true;
-          # boot.loader.efi.canTouchEfiVariables = true;
-
           time.timeZone = "Europe/Warsaw";
-
           i18n.defaultLocale = "en_US.UTF-8";
 
+          # Blacklist built-in Bluetooth on Raspberry PI 4B
+          boot.blacklistedKernelModules = [
+            "btbcm"
+            "hci_uart"
+          ];
 
           users = {
             mutableUsers = false;
