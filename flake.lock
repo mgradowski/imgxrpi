@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "generators": {
+    "gen": {
       "inputs": {
         "nixlib": "nixlib",
         "nixpkgs": "nixpkgs"
@@ -69,7 +69,7 @@
     },
     "root": {
       "inputs": {
-        "generators": "generators",
+        "gen": "gen",
         "nixpkgs": "nixpkgs_2"
       }
     }
